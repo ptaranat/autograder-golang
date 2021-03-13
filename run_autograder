@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd /autograder/submission
+find . -name '*.tar' -execdir tar -xvf '{}' \;
+find . -name '*.tar.gz' -execdir tar -xzvf '{}' \;
+cd /autograder/submission/*/
+cp * /autograder/source
+cd /autograder/source
+
+# Grading
+python3 grade.py
