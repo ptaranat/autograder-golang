@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 	"os/exec"
 	"time"
 )
@@ -34,7 +35,7 @@ func RunExe(executable string, arguments ...string) string {
 func Grade() string {
 	RunExe("make")
 	cmd := exec.Command("./myISS", "sample.assembly")
-	cmd.Dir = "/c/users/panat/Documents/GitHub/autograder-golang"
+	cmd.Dir, _ = os.Getwd()
 	start := time.Now()
 	out, _ := cmd.Output()
 	elapsed := time.Since(start)
