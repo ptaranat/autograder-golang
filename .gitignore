@@ -1,3 +1,9 @@
+*.c
+*.h
+*.o
+Makefile
+myISS
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
