@@ -25,6 +25,7 @@ type Leaderboard struct {
 
 func RunExe(executable string, arguments ...string) string {
 	cmd := exec.Command(executable, arguments...)
+	cmd.Dir, _ = os.Getwd()
 	out, err := cmd.Output()
 	if err != nil {
 		panic(err)
@@ -34,10 +35,8 @@ func RunExe(executable string, arguments ...string) string {
 
 func Grade() string {
 	RunExe("make")
-	cmd := exec.Command("./myISS", "sample.assembly")
-	cmd.Dir, _ = os.Getwd()
 	start := time.Now()
-	out, _ := cmd.Output()
+	out := RunExe("./myISS", "sample.assembly")
 	elapsed := time.Since(start)
 	execution_time := float64(elapsed.Seconds())
 	result := Result{
